@@ -1,8 +1,8 @@
 const give_correct_ans = "dcabaacdaccda";
-const gucco1="";
-const gucco2="";
-const gucco3="";
-const gucco4="";
+const gucco1="aaaa";
+const gucco2="bbbb";
+const gucco3="cccc";
+const gucco4="dddd";
 const gucco5="";
 const gucco6="";
 const gucco7="";
