@@ -1,1 +1,11 @@
 const give_correct_ans = "dcabaacdaccda";
+const gucco1="";
+const gucco2="";
+const gucco3="";
+const gucco4="";
+const gucco5="";
+const gucco6="";
+const gucco7="";
+const gucco8="";
+const gucco9="";
+const gucco10="";
