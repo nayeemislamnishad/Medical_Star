@@ -133,7 +133,7 @@ function selectOption(option, letter, questionNumber) {
     clearInterval(countdownTimer); // Stop the countdown timer
     const selectedOptions = document.querySelectorAll('.option.selected');
   //  const give_correct_ans = "dcabaacdaccda";
-    const correctAnswers = give_correct_ans.split('');
+    const correctAnswers = gucco8.split('');
     let totalMarks = 0;
     let answeredQuestions = []; // Array to store question numbers that have been answered
 
