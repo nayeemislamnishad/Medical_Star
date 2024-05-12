@@ -1,11 +1,6 @@
-const give_correct_ans = "dcabaacdaccda";
-const gucco1="aaaa";
-const gucco2="bbbb";
-const gucco3="cccc";
-const gucco4="dddd";
-const gucco5="";
-const gucco6="";
-const gucco7="";
-const gucco8="";
-const gucco9="";
-const gucco10="";
+const gucco1="dcaabbacdcacdcbcacabdcc";
+const gucco2="cbcccdbd";
+const gucco3="cdcbabaaaccbaacdcaaccda";
+const gucco4="abacadbbdabbdd";
+const gucco5="ababbb";
+const gucco6="adbccccadcbbcddacacbacbac";
