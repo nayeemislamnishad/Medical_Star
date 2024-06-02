@@ -10,6 +10,23 @@
 <script src="../answerSheet.js"></script>
 </head>
 <body>
+
+<div id="upload-container">
+        <h1>Upload Image</h1>
+        <label for="image-upload" id="upload-button">Choose Image</label>
+        <input type="file" accept="image/*" id="image-upload" onchange="previewImage(event)">
+        <div id="image-preview"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+    
 <div class="container">
     <h1 id="headtext">OMR Answer Sheet Generator</h1>
     <label for="questionNumber" id="questionnumbertext">Enter the number of questions:</label>
@@ -24,6 +41,28 @@
 </div>
 
 <script src="script.js"></script>
+
+    <script>
+        let uploaded = false;
+
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('image-preview');
+                output.innerHTML = '<img src="' + reader.result + '" alt="Uploaded Image">';
+                uploaded = true;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        window.addEventListener('beforeunload', function (e) {
+            if (uploaded) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+    
 </body>
       </html>
   
