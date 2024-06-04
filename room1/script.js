@@ -84,7 +84,7 @@ function generateAnswerSheet() {
     }
     document.getElementById('answerSheet').innerHTML = answerSheetHTML;
 
-  //  hideAll();
+   hideAll();
 
     // Start the timer when generating the answer sheet
     const timerDisplay = document.getElementById('timer');
@@ -214,7 +214,7 @@ function selectOption(option, letter, questionNumber) {
 
 
 
-/*
+
 
 function hideAll(){ 
 const divIdsToHide = ['questionNumber', 'timerDuration','generatedText','questionnumbertext','timetext','headtext'];
@@ -228,4 +228,4 @@ divIdsToHide.forEach(id => {
     
 }
 
-*/
+
