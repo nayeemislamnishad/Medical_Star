@@ -67,7 +67,7 @@ function generateAnswerSheet() {
   //const timerDuration = document.getElementById('timerDuration').value;
     const timeInseconds=questionNumber*20;
     const timerDuration=timeInseconds/60;
-   const resultDiv = document.querySelector('.container');
+   const resultDiv = document.querySelector('.alerts');
     const message = `Number of questions:${questionNumber} <br> You will get 👉 ${timerDuration} minutes to give this exam`;
    resultDiv.innerHTML = message;
 
