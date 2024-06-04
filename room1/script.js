@@ -214,7 +214,7 @@ function selectOption(option, letter, questionNumber) {
 
 
 
-
+/*
 
 function hideAll(){ 
 const divIdsToHide = ['questionNumber', 'timerDuration','generatedText','questionnumbertext','timetext','headtext'];
@@ -227,3 +227,5 @@ divIdsToHide.forEach(id => {
 });
     
 }
+
+*/
