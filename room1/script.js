@@ -65,6 +65,31 @@ document.getElementById('submittext').style.display = 'none';
 document.getElementById('answerSheet').style.display = 'none';
 
 
+
+      const questionNumber = gucco1.length;
+  
+    const timeInseconds=questionNumber*20;
+    const timerDuration=timeInseconds/60;
+
+    
+   const resultDiv = document.querySelector('.container');
+    const message = `Number of questions:${questionNumber} <br> You will get 👉 ${timerDuration} minutes to give this exam`;
+   resultDiv.innerHTML = message;
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function generateAnswerSheet() {
  //   const questionNumber = document.getElementById('questionNumber').value;
       const questionNumber = gucco1.length;
