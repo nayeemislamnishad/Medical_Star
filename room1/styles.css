@@ -392,3 +392,33 @@ input[type="number"] {
     background-color: #45a049; /* Slightly darker green on hover */
     transform: scale(1.05); /* Slightly enlarges the button */
 }
+
+
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height to center vertically, optional */
+}
+
+#upload-button {
+    display: inline-block; /* Ensures width is respected */
+    width: 40%; /* Sets the width of the button */
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 15px 30px; /* Increased padding for better appearance */
+    border: none; /* Removes default border */
+    border-radius: 8px; /* Rounds the corners */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and transform */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    font-size: 16px; /* Sets a larger font size */
+    text-align: center; /* Centers the text */
+}
+
+/* Hover effect */
+#upload-button:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Slightly enlarges the button */
+}
