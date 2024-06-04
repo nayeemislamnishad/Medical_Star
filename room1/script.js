@@ -61,6 +61,9 @@ function generateAnswerSheet() {
 */
 
 
+document.getElementById('submittext').style.display = 'none';
+
+
 function generateAnswerSheet() {
  //   const questionNumber = document.getElementById('questionNumber').value;
       const questionNumber = gucco1.length;
@@ -87,6 +90,7 @@ function generateAnswerSheet() {
     document.getElementById('answerSheet').innerHTML = answerSheetHTML;
 
    hideAll();
+    document.getElementById('submittext').style.display = 'block';
 
     // Start the timer when generating the answer sheet
     const timerDisplay = document.getElementById('timer');
