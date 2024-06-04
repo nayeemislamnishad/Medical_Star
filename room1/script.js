@@ -62,6 +62,7 @@ function generateAnswerSheet() {
 
 
 document.getElementById('submittext').style.display = 'none';
+document.getElementById('answerSheet').style.display = 'none';
 
 
 function generateAnswerSheet() {
@@ -91,7 +92,10 @@ function generateAnswerSheet() {
 
    hideAll();
     document.getElementById('submittext').style.display = 'block';
+    document.getElementById('answerSheet').style.display = 'block';
 
+
+    
     // Start the timer when generating the answer sheet
     const timerDisplay = document.getElementById('timer');
     startTimer(timerDuration * 60, timerDisplay); // Convert minutes to seconds
