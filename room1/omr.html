@@ -11,11 +11,8 @@
 </head>
 <body>
 
-        
-
 <div id="upload-container">
-        <br><br><br><br>
-        <h5><i>Click the button bellow to choose your question</i></h5>
+        <h1>Upload Image</h1>
         <label for="image-upload" id="upload-button">Choose Image</label>
         <input type="file" accept="image/*" id="image-upload" onchange="previewImage(event)">
         <div id="image-preview"></div>
@@ -32,7 +29,6 @@
     
 <div class="container">
     <h1 id="headtext">OMR Answer Sheet Generator</h1>
-    
     <button onclick="generateAnswerSheet()" id="generatedText">Generate Answer Sheet</button>
     <div id="result" style="float: right; margin-right: 10px;"></div> <!-- Result will be displayed here -->
     <div id="answerSheet"></div>
