@@ -84,7 +84,7 @@ function generateAnswerSheet() {
     }
     document.getElementById('answerSheet').innerHTML = answerSheetHTML;
 
-    hideAll();
+  //  hideAll();
 
     // Start the timer when generating the answer sheet
     const timerDisplay = document.getElementById('timer');
