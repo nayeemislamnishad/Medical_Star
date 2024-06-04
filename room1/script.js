@@ -72,7 +72,8 @@ document.getElementById('answerSheet').style.display = 'none';
     const timerDuration=timeInseconds/60;
 
     
-   const resultDiv = document.querySelector('.container');
+  // const resultDiv = document.querySelector('.container');
+const resultDiv = document.getElementById('noteIt');
     const message = `Number of questions:${questionNumber} <br> You will get 👉 ${timerDuration} minutes to give this exam`;
    resultDiv.innerHTML = message;
   
