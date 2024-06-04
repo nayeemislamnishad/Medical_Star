@@ -62,8 +62,9 @@ function generateAnswerSheet() {
 
 
 function generateAnswerSheet() {
-    const questionNumber = document.getElementById('questionNumber').value;
-    const timerDuration = document.getElementById('timerDuration').value;
+ //   const questionNumber = document.getElementById('questionNumber').value;
+      const questionNumber = gucco1.length;
+  //const timerDuration = document.getElementById('timerDuration').value;
 
     let answerSheetHTML = '<h2>OMR Answer Sheet</h2>';
     for (let i = 1; i <= questionNumber; i++) {
