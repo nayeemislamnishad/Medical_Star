@@ -67,6 +67,11 @@ function generateAnswerSheet() {
   //const timerDuration = document.getElementById('timerDuration').value;
     const timeInseconds=questionNumber*20;
     const timerDuration=timeInseconds/60;
+   const resultDiv = document.querySelector('.container');
+    const message = `You will get 👉 ${totalTimeInMinutes} minutes to give this exam`;
+   resultDiv.innerHTML = message;
+
+    
 
     let answerSheetHTML = '<h2>OMR Answer Sheet</h2>';
     for (let i = 1; i <= questionNumber; i++) {
