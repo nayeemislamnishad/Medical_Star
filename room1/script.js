@@ -165,6 +165,8 @@ function selectOption(option, letter, questionNumber) {
 
 
 
+/* tjis is important 
+
 
 
 
@@ -223,6 +225,74 @@ function selectOption(option, letter, questionNumber) {
         questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
     }
 }
+
+
+
+*/ 
+
+
+
+
+
+function submitAnswers() {
+    const idToHide = document.getElementById('submittext');
+    idToHide.style.display = 'none';
+    if (answersSubmitted) return; // Prevent submitting answers multiple times
+    answersSubmitted = true; // Set flag to true after answers have been submitted
+    clearInterval(countdownTimer); // Stop the countdown timer
+    const selectedOptions = document.querySelectorAll('.option.selected');
+    const correctAnswers = gucco1.split('');
+    let totalMarks = 0;
+    let answeredQuestions = []; // Array to store question numbers that have been answered
+
+    selectedOptions.forEach((option, index) => {
+        const selectedLetter = option.textContent;
+        const correctLetter = correctAnswers[option.dataset.questionNumber - 1];
+        const questionNumber = parseInt(option.dataset.questionNumber);
+        if (selectedLetter === correctLetter) {
+            // Your logic for correct answer handling
+            option.classList.add('correct');
+            totalMarks++; // Increment totalMarks for each correct answer
+            let tTa = totalMarks; // Calculate tTa
+            tTaArray.push(tTa); // Store tTa in tTaArray
+        } else {
+            // Your logic for incorrect answer handling
+            option.classList.add('incorrect');
+            // Implement negative marking here
+            totalMarks -= 0.25; // Deduct 0.25 marks for each incorrect answer
+        }
+
+        option.classList.remove('selected');
+        answeredQuestions.push(questionNumber); // Store answered question numbers
+    });
+
+    // Check for unanswered questions and mark them as "skip"
+    for (let i = 1; i <= totalCount; i++) {
+        if (!answeredQuestions.includes(i)) {
+            const questionDiv = document.getElementById(`question${i}`);
+            questionDiv.innerHTML += `<div class="option skip">skiped</div>`;
+        }
+    }
+
+    const lastElement = tTaArray[tTaArray.length - 1];
+    console.log(lastElement);
+    const lastElementDisplay = document.createElement('div');
+    lastElementDisplay.textContent = "Correct: " + lastElement + "/" + totalCount;
+    lastElementDisplay.classList.add('last-element-display');
+    const answerSheetContainer = document.getElementById('answerSheet');
+    answerSheetContainer.appendChild(lastElementDisplay);
+    const options = document.querySelectorAll('.option');
+    options.forEach(opt => opt.onclick = null);
+    for (let i = 1; i <= correctAnswers.length; i++) {
+        const correctLetter = correctAnswers[i - 1];
+        const questionDiv = document.getElementById(`question${i}`);
+        questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
+    }
+}
+
+
+
+
 
 
 
