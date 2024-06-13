@@ -338,30 +338,77 @@ divIdsToHide.forEach(id => {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const photos = document.querySelectorAll(".photo");
-    const modal = document.getElementById("modal");
-    const modalImg = document.getElementById("modal-img");
+document.addEventListener('DOMContentLoaded', () => {
+    const chatBubble = document.getElementById('chatBubble');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
 
-    photos.forEach(photo => {
-        photo.addEventListener("click", () => {
-            modal.style.display = "flex";
-            modalImg.src = photo.src;
-        });
+    chatBubble.addEventListener('click', (event) => {
+        chatWindow.classList.toggle('open');
+        if (chatWindow.classList.contains('open')) {
+            chatWindow.style.display = 'flex';
+            setTimeout(() => {
+                chatWindow.style.opacity = '1';
+                chatWindow.style.transform = 'scale(1)';
+            }, 10);
+        } else {
+            chatWindow.style.opacity = '0';
+            chatWindow.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                chatWindow.style.display = 'none';
+            }, 300);
+        }
+        event.stopPropagation();
     });
 
-    modal.addEventListener("click", () => {
-        modal.style.display = "none";
+    closeChat.addEventListener('click', () => {
+        chatWindow.classList.remove('open');
+        chatWindow.style.opacity = '0';
+        chatWindow.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            chatWindow.style.display = 'none';
+        }, 300);
     });
 
-    modalImg.addEventListener("click", () => {
-        modal.style.display = "none";
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    chatBubble.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        offsetX = event.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = event.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseMove(event) {
+        if (isDragging) {
+            chatBubble.style.left = `${event.clientX - offsetX}px`;
+            chatBubble.style.top = `${event.clientY - offsetY}px`;
+            chatBubble.style.bottom = 'auto';
+            chatBubble.style.right = 'auto';
+        }
+    }
+
+    function onMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    document.addEventListener('click', (event) => {
+        if (!chatWindow.contains(event.target) && chatWindow.classList.contains('open')) {
+            chatWindow.classList.remove('open');
+            chatWindow.style.opacity = '0';
+            chatWindow.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                chatWindow.style.display = 'none';
+            }, 300);
+        }
+    });
+
+    chatWindow.addEventListener('click', (event) => {
+        event.stopPropagation();
     });
 });
-
-
-
-
-
-
-
