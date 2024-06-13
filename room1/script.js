@@ -63,6 +63,8 @@ function generateAnswerSheet() {
 
 document.getElementById('submittext').style.display = 'none';
 document.getElementById('answerSheet').style.display = 'none';
+document.getElementById('chatBubble').style.display= 'none';
+
 
 
 
@@ -119,6 +121,7 @@ function generateAnswerSheet() {
    hideAll();
     document.getElementById('submittext').style.display = 'block';
     document.getElementById('answerSheet').style.display = 'block';
+    document.getElementById('chatBubble').style.display = 'block';
 
 
     
