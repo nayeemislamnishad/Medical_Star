@@ -23,49 +23,9 @@ function startTimer(duration, display) {
 
 
 
-
-
-/*
-
-function generateAnswerSheet() {
-    const questionNumber = document.getElementById('questionNumber').value;
-    const timerDuration = document.getElementById('timerDuration').value;
-
-    let answerSheetHTML = '<h2>OMR Answer Sheet</h2>';
-    for (let i = 1; i <= questionNumber; i++) {
-        answerSheetHTML += `<div id="question${i}"><strong> ${i}:</strong> `;
-        for (let j = 0; j < 5; j++) { // Changed loop limit to 5 for 5 options
-            if (j < 4) {
-                const option = String.fromCharCode(97 + j); // Convert ASCII code to letters 'a', 'b', 'c', 'd'
-                answerSheetHTML += `<div class="option" onclick="selectOption(this, '${option}', ${i})">${option}</div>`;
-            } else {
-                // Add a "skip" option
-                answerSheetHTML += `<div class="option skip" onclick="selectOption(this, 'skip', ${i})">skip</div>`;
-            }
-        }
-        answerSheetHTML += `</div>`;
-    }
-    document.getElementById('answerSheet').innerHTML = answerSheetHTML;
-
-    hideAll();
-
-    // Start the timer when generating the answer sheet
-    const timerDisplay = document.getElementById('timer');
-    startTimer(timerDuration * 60, timerDisplay); // Convert minutes to seconds
-
-    totalCount = parseInt(questionNumber);
-}
-
-
-
-*/
-
-
 document.getElementById('submittext').style.display = 'none';
 document.getElementById('answerSheet').style.display = 'none';
 document.getElementById('chatBubble').style.display= 'none';
-
-
 
 
       const questionNumber = gucco1.length;
@@ -82,17 +42,6 @@ const resultDiv = document.getElementById('noteIt');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 function generateAnswerSheet() {
  //   const questionNumber = document.getElementById('questionNumber').value;
       const questionNumber = gucco1.length;
@@ -100,12 +49,7 @@ function generateAnswerSheet() {
     const timeInseconds=questionNumber*20;
     const timerDuration=timeInseconds/60;
 
-    /*
-   const resultDiv = document.querySelector('.alerts');
-    const message = `Number of questions:${questionNumber} <br> You will get 👉 ${timerDuration} minutes to give this exam`;
-   resultDiv.innerHTML = message;
-  */
-    
+
 
     let answerSheetHTML = '<h2>OMR Answer Sheet</h2>';
     for (let i = 1; i <= questionNumber; i++) {
@@ -136,14 +80,6 @@ function generateAnswerSheet() {
 
 
 
-
-
-
-
-
-
-
-
 function selectOption(option, letter, questionNumber) {
     if (answersSubmitted) return; // Prevent selection after answers have been submitted
 
@@ -158,80 +94,6 @@ function selectOption(option, letter, questionNumber) {
 }
   let tTaArray = [0];
 
-
-
-
-
-
-
-
-
-
-
-/* tjis is important 
-
-
-
-
-
-  function submitAnswers() {
-    const idToHide = document.getElementById('submittext');
-    idToHide.style.display = 'none';
-    if (answersSubmitted) return; // Prevent submitting answers multiple times
-    answersSubmitted = true; // Set flag to true after answers have been submitted
-    clearInterval(countdownTimer); // Stop the countdown timer
-    const selectedOptions = document.querySelectorAll('.option.selected');
-  //  const give_correct_ans = "dcabaacdaccda";
-    const correctAnswers = gucco1.split('');
-    let totalMarks = 0;
-    let answeredQuestions = []; // Array to store question numbers that have been answered
-
-    selectedOptions.forEach((option, index) => {
-        const selectedLetter = option.textContent;
-        const correctLetter = correctAnswers[option.dataset.questionNumber - 1];
-        const questionNumber = parseInt(option.dataset.questionNumber);
-        if (selectedLetter === correctLetter) {
-            // Your logic for correct answer handling
-            option.classList.add('correct');
-            totalMarks++; // Increment totalMarks for each correct answer
-            let tTa = totalMarks; // Calculate tTa
-            tTaArray.push(tTa); // Store tTa in tTaArray
-        } else {
-            // Your logic for incorrect answer handling
-            option.classList.add('incorrect');
-        }
-
-        option.classList.remove('selected');
-        answeredQuestions.push(questionNumber); // Store answered question numbers
-    });
-
-    // Check for unanswered questions and mark them as "skip"
-    for (let i = 1; i <= totalCount; i++) {
-        if (!answeredQuestions.includes(i)) {
-            const questionDiv = document.getElementById(`question${i}`);
-            questionDiv.innerHTML += `<div class="option skip">skiped</div>`;
-        }
-    }
-
-    const lastElement = tTaArray[tTaArray.length - 1];
-    console.log(lastElement);
-    const lastElementDisplay = document.createElement('div');
-    lastElementDisplay.textContent = "Correct: " + lastElement + "/" + totalCount;
-    lastElementDisplay.classList.add('last-element-display');
-    const answerSheetContainer = document.getElementById('answerSheet');
-    answerSheetContainer.appendChild(lastElementDisplay);
-    const options = document.querySelectorAll('.option');
-    options.forEach(opt => opt.onclick = null);
-    for (let i = 1; i <= correctAnswers.length; i++) {
-        const correctLetter = correctAnswers[i - 1];
-        const questionDiv = document.getElementById(`question${i}`);
-        questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
-    }
-}
-
-
-
-*/ 
 
 
 
@@ -292,37 +154,6 @@ function submitAnswers() {
         questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function hideAll(){ 
