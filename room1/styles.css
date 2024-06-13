@@ -427,45 +427,77 @@ input[type="number"] {
 
 
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    position:fixed;
-}
 
-.photo {
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: transform 0.2s;
-}
-
-.photo:hover {
-    transform: scale(1.05);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.9);
+.chat-bubble {
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
     justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    user-select: none;
+    transition: transform 0.3s;
+}
+
+.chat-window {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.chat-window.open {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-.modal-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    border-radius: 10px;
+.chat-header button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.image-container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
