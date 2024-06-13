@@ -257,6 +257,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
 let totalCount = 0; 
 let answersSubmitted = false; // Flag to track whether answers have been submitted
 let countdownTimer; // Variable to store the countdown timer
@@ -320,25 +322,8 @@ function generateAnswerSheet() {
     totalCount = parseInt(questionNumber);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function selectOption(option, letter, questionNumber) {
     if (answersSubmitted) return; // Prevent selection after answers have been submitted
-
-    // Confirmation message before selecting the option
-    const confirmMessage = `You are choosing option ${letter.toUpperCase()}. OK?`;
-    if (!confirm(confirmMessage)) {
-        return; // If user cancels the confirmation, do nothing
-    }
 
     const options = option.parentNode.querySelectorAll('.option');
     options.forEach(opt => opt.classList.remove('selected'));
@@ -349,14 +334,6 @@ function selectOption(option, letter, questionNumber) {
 
     console.log(`Selected option ${letter} for Question ${questionNumber}`);
 }
-
-
-
-
-
-
-
-
 
 let tTaArray = [0];
 
@@ -495,4 +472,3 @@ document.addEventListener('DOMContentLoaded', () => {
         event.stopPropagation();
     });
 });
-
