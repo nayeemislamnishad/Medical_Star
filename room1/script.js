@@ -335,3 +335,33 @@ divIdsToHide.forEach(id => {
 }
 
 
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const photos = document.querySelectorAll(".photo");
+    const modal = document.getElementById("modal");
+    const modalImg = document.getElementById("modal-img");
+
+    photos.forEach(photo => {
+        photo.addEventListener("click", () => {
+            modal.style.display = "flex";
+            modalImg.src = photo.src;
+        });
+    });
+
+    modal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    modalImg.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+});
+
+
+
+
+
+
+
