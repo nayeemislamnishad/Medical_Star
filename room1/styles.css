@@ -563,3 +563,16 @@ background-repeat: no-repeat;
     padding-left: 30px;
     align-content: center;
 }
+
+
+
+.feedback-message {
+    margin-top: 40px;
+    font-size: 15px;
+    color: red; /* Green color for the feedback message */
+  background-color: yellow;
+  text-align: center;
+  border-radius: 15px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
