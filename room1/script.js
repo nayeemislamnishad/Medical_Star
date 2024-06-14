@@ -77,6 +77,8 @@ function selectOption(option, letter, questionNumber) {
 
 let tTaArray = [0];
 
+
+
 function submitAnswers() {
     const idToHide = document.getElementById('submittext');
     idToHide.style.display = 'none';
@@ -116,8 +118,22 @@ function submitAnswers() {
     const lastElementDisplay = document.createElement('div');
     lastElementDisplay.textContent = "Marks: " + totalMarks.toFixed(2) + "/" + totalCount;
     lastElementDisplay.classList.add('last-element-display');
+
+    // Get feedback message based on marks
+    const original_marks =( totalMarks*100)/questionNumber;
+    const actual_marks=original_marks.toFixed(2);
+    console.log(original_marks);
+    
+    const feedbackMessage = getFeedbackMessage(actual_marks);
+
+    // Create and append the feedback message element
+    const feedbackElement = document.createElement('div');
+    feedbackElement.textContent = feedbackMessage;
+    feedbackElement.classList.add('feedback-message');
     const answerSheetContainer = document.getElementById('answerSheet');
     answerSheetContainer.appendChild(lastElementDisplay);
+    answerSheetContainer.appendChild(feedbackElement);
+
     const options = document.querySelectorAll('.option');
     options.forEach(opt => opt.onclick = null);
     for (let i = 1; i <= correctAnswers.length; i++) {
@@ -126,6 +142,21 @@ function submitAnswers() {
         questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function hideAll() {
     const divIdsToHide = ['questionNumber', 'timerDuration', 'generatedText', 'questionnumbertext', 'timetext', 'headtext'];
@@ -257,5 +288,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
 });
+
+
+
+function getFeedbackMessage(marks){
+    if (marks >= 85 && marks <= 100) {
+        return `DMC is for you. You obtained: ${marks}/100`;
+    } else if (marks >= 88 && marks <= 89) {
+        return `SRMC is for you. You obtained: ${marks}/100`;
+    } else if (marks >= 75 && marks < 85) {
+        return `Keep going, you're doing well! You obtained: ${marks}/100`;
+    } else if (marks >= 50 && marks < 75) {
+        return `You can do better, keep practicing! You obtained: ${marks}/100`;
+    } else {
+        return `Don't give up, keep working hard!  You obtained: ${marks}/100`;
+    }
+}
+
+
 
     
