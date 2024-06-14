@@ -398,15 +398,24 @@ function hideAll() {
     });
 }
 
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const chatBubble = document.getElementById('chatBubble');
     const chatWindow = document.getElementById('chatWindow');
     const closeChat = document.getElementById('closeChat');
+    const overlay = document.getElementById('overlay');
 
     chatBubble.addEventListener('click', (event) => {
         chatWindow.classList.toggle('open');
         if (chatWindow.classList.contains('open')) {
             chatWindow.style.display = 'flex';
+            overlay.style.display = 'block';
             setTimeout(() => {
                 chatWindow.style.opacity = '1';
                 chatWindow.style.transform = 'scale(1)';
@@ -416,18 +425,14 @@ document.addEventListener('DOMContentLoaded', () => {
             chatWindow.style.transform = 'scale(0.8)';
             setTimeout(() => {
                 chatWindow.style.display = 'none';
+                overlay.style.display = 'none';
             }, 300);
         }
         event.stopPropagation();
     });
 
     closeChat.addEventListener('click', () => {
-        chatWindow.classList.remove('open');
-        chatWindow.style.opacity = '0';
-        chatWindow.style.transform = 'scale(0.8)';
-        setTimeout(() => {
-            chatWindow.style.display = 'none';
-        }, 300);
+        closeChatWindow();
     });
 
     let isDragging = false;
@@ -457,16 +462,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.removeEventListener('mouseup', onMouseUp);
     }
 
-    document.addEventListener('click', (event) => {
-        if (!chatWindow.contains(event.target) && chatWindow.classList.contains('open')) {
-            chatWindow.classList.remove('open');
-            chatWindow.style.opacity = '0';
-            chatWindow.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                chatWindow.style.display = 'none';
-            }, 300);
-        }
+    overlay.addEventListener('click', (event) => {
+        closeChatWindow();
+        event.stopPropagation();
     });
+
+    function closeChatWindow() {
+        chatWindow.classList.remove('open');
+        chatWindow.style.opacity = '0';
+        chatWindow.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            chatWindow.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 300);
+    }
 
     chatWindow.addEventListener('click', (event) => {
         event.stopPropagation();
