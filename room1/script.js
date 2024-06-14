@@ -142,7 +142,7 @@ function hideAll() {
 
 
 
-
+/*
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -222,6 +222,110 @@ document.addEventListener('DOMContentLoaded', () => {
         event.stopPropagation();
     });
 });
+
+
+ this is good code */
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatBubble = document.getElementById('chatBubble');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const overlay = document.getElementById('overlay');
+
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    // Function to handle both mouse and touch move events
+    function handleMove(event) {
+        if (isDragging) {
+            const currentX = event.clientX || event.touches[0].clientX;
+            const currentY = event.clientY || event.touches[0].clientY;
+            chatBubble.style.left = `${currentX - offsetX}px`;
+            chatBubble.style.top = `${currentY - offsetY}px`;
+            chatBubble.style.bottom = 'auto';
+            chatBubble.style.right = 'auto';
+        }
+    }
+
+    chatBubble.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        offsetX = event.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = event.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMove);
+        });
+    });
+
+    // Touch events for mobile devices
+    chatBubble.addEventListener('touchstart', (event) => {
+        isDragging = true;
+        const touch = event.touches[0];
+        offsetX = touch.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = touch.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('touchmove', handleMove);
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            document.removeEventListener('touchmove', handleMove);
+        });
+    });
+
+    // Toggle chat window visibility
+    chatBubble.addEventListener('click', (event) => {
+        chatWindow.classList.toggle('open');
+        if (chatWindow.classList.contains('open')) {
+            chatWindow.style.display = 'flex';
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                chatWindow.style.opacity = '1';
+                chatWindow.style.transform = 'scale(1)';
+            }, 10);
+        } else {
+            chatWindow.style.opacity = '0';
+            chatWindow.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                chatWindow.style.display = 'none';
+                overlay.style.display = 'none';
+            }, 300);
+        }
+        event.stopPropagation();
+    });
+
+    // Close chat window when clicking on overlay
+    overlay.addEventListener('click', () => {
+        closeChatWindow();
+    });
+
+    // Function to close chat window
+    function closeChatWindow() {
+        chatWindow.classList.remove('open');
+        chatWindow.style.opacity = '0';
+        chatWindow.style.transform = 'scale(0.8)';
+        setTimeout(() => {
+            chatWindow.style.display = 'none';
+            overlay.style.display = 'none';
+        }, 300);
+    }
+
+    // Prevent chat window from closing when clicking inside
+    chatWindow.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+});
+
+
+
+
+
+
+
 
 
 
