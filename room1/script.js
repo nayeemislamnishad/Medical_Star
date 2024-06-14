@@ -229,11 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const chatBubble = document.getElementById('chatBubble');
     const chatWindow = document.getElementById('chatWindow');
-    const closeChat = document.getElementById('closeChat');
     const overlay = document.getElementById('overlay');
 
     let isDragging = false;
@@ -312,9 +310,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Handle clicks inside the chat window to close it
-    chatWindow.addEventListener('click', (event) => {
-        if (event.target === chatWindow) { // Check if the click occurred on the chat window itself
-            closeChatWindow(); // Close the chat window
+    document.addEventListener('click', (event) => {
+        if (!chatWindow.contains(event.target) && !chatBubble.contains(event.target)) {
+            closeChatWindow(); // Close the chat window if the click is outside both chatBubble and chatWindow
         }
     });
 });
