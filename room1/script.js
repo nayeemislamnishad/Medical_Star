@@ -298,10 +298,8 @@ document.addEventListener('DOMContentLoaded', () => {
         event.stopPropagation();
     });
 
-    // Close chat window when clicking on overlay
-    overlay.addEventListener('click', () => {
-        closeChatWindow();
-    });
+    // Close chat window when clicking on overlay or inside chat window
+    overlay.addEventListener('click', closeChatWindow);
 
     // Function to close chat window
     function closeChatWindow() {
@@ -317,18 +315,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Prevent chat window from closing when clicking inside
     chatWindow.addEventListener('click', (event) => {
         event.stopPropagation();
+        if (event.target === chatWindow) {
+            closeChatWindow();
+        }
     });
 });
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
