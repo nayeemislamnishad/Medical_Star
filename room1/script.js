@@ -232,6 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const chatBubble = document.getElementById('chatBubble');
     const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
     const overlay = document.getElementById('overlay');
 
     let isDragging = false;
@@ -249,34 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    chatBubble.addEventListener('mousedown', (event) => {
-        isDragging = true;
-        offsetX = event.clientX - chatBubble.getBoundingClientRect().left;
-        offsetY = event.clientY - chatBubble.getBoundingClientRect().top;
-
-        document.addEventListener('mousemove', handleMove);
-        document.addEventListener('mouseup', () => {
-            isDragging = false;
-            document.removeEventListener('mousemove', handleMove);
-        });
-    });
-
-    // Touch events for mobile devices
-    chatBubble.addEventListener('touchstart', (event) => {
-        isDragging = true;
-        const touch = event.touches[0];
-        offsetX = touch.clientX - chatBubble.getBoundingClientRect().left;
-        offsetY = touch.clientY - chatBubble.getBoundingClientRect().top;
-
-        document.addEventListener('touchmove', handleMove);
-        document.addEventListener('touchend', () => {
-            isDragging = false;
-            document.removeEventListener('touchmove', handleMove);
-        });
-    });
-
-    // Toggle chat window visibility
-    chatBubble.addEventListener('click', (event) => {
+    // Function to open/close chat window
+    function toggleChatWindow() {
         chatWindow.classList.toggle('open');
         if (chatWindow.classList.contains('open')) {
             chatWindow.style.display = 'flex';
@@ -293,12 +268,68 @@ document.addEventListener('DOMContentLoaded', () => {
                 overlay.style.display = 'none';
             }, 300);
         }
-        event.stopPropagation(); // Prevent the event from propagating further
+    }
+
+    // Toggle chat window visibility on bubble click
+    chatBubble.addEventListener('click', (event) => {
+        toggleChatWindow();
+        event.stopPropagation(); // Prevent bubbling to body
     });
 
-    // Close chat window when clicking on overlay or inside chat window
-    overlay.addEventListener('click', closeChatWindow);
+    // Close chat window on overlay click
+    overlay.addEventListener('click', () => {
+        toggleChatWindow();
+    });
 
+    // Dragging the chat bubble
+    chatBubble.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        offsetX = event.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = event.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', handleMove);
+        });
+    });
+
+    // Touch events for dragging on mobile devices
+    chatBubble.addEventListener('touchstart', (event) => {
+        isDragging = true;
+        const touch = event.touches[0];
+        offsetX = touch.clientX - chatBubble.getBoundingClientRect().left;
+        offsetY = touch.clientY - chatBubble.getBoundingClientRect().top;
+
+        document.addEventListener('touchmove', handleMove);
+        document.addEventListener('touchend', () => {
+            isDragging = false;
+            document.removeEventListener('touchmove', handleMove);
+        });
+    });
+
+    // Close chat window on close button click
+    closeChat.addEventListener('click', (event) => {
+        toggleChatWindow();
+        event.stopPropagation(); // Prevent bubbling to body
+    });
+
+    // Prevent chat window from closing on internal clicks
+    chatWindow.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    // Function to close chat window when clicking anywhere inside it
+    chatWindow.addEventListener('click', () => {
+        toggleChatWindow();
+    });
+
+    // Function to close chat window when clicking on overlay
+    overlay.addEventListener('click', () => {
+        toggleChatWindow();
+    });
+
+    // Function to close chat window
     function closeChatWindow() {
         chatWindow.classList.remove('open');
         chatWindow.style.opacity = '0';
@@ -308,14 +339,13 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.display = 'none';
         }, 300);
     }
-
-    // Handle clicks inside the chat window to close it
-    document.addEventListener('click', (event) => {
-        if (!chatWindow.contains(event.target) && !chatBubble.contains(event.target)) {
-            closeChatWindow(); // Close the chat window if the click is outside both chatBubble and chatWindow
-        }
-    });
 });
+
+    
+
+    
+
+    
 
 
 /*
