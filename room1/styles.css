@@ -437,10 +437,10 @@ input[type="number"] {
 
 
 .chat-bubble {
-    width: 65px;
-    height: 65px;
-    background-color: #007bff;
-    color: white;
+    width: 67px;
+    height: 67px;
+    
+    color:darkred;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -452,6 +452,13 @@ input[type="number"] {
     z-index: 1000;
     user-select: none;
     transition: transform 0.3s;
+    font-size:15px;
+    font-weight: bold;
+    border: 3px solid darkred;
+background-image: url("question1.jpg");
+background-size:cover;
+background-repeat: no-repeat;
+
 }
 
 .chat-window {
@@ -469,6 +476,7 @@ input[type="number"] {
     opacity: 0;
     transform: scale(0.8);
     transition: opacity 0.3s, transform 0.3s;
+    
 }
 
 .chat-window.open {
@@ -478,26 +486,28 @@ input[type="number"] {
 }
 
 .chat-header {
-    background-color: #007bff;
+    background-color: #007b;
     color: white;
-    padding: 10px;
+    padding:5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.chat-header button {
+ .chat-header button {
     background: none;
-    border: none;
+    
     color: white;
-    font-size: 20px;
-    cursor: pointer;
-}
+    
+    
+    margin: 0px;
+} 
 
 .image-container {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
+    padding-top: 0px;
 }
 
 .image-item {
