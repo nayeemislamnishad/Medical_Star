@@ -508,4 +508,8 @@ input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-    
+
+#noteIt{
+ color:navy;
+    font-size:20px;
+}
