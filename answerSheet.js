@@ -1,4 +1,4 @@
-const gucco1="cdbbbcbdddbbcbacaabcbcaaaabbdc";
+const gucco1="bdadcdabcccbaaaabcababaaadaabccacacddabadcdaddabbcdc";
 const gucco2="accabaaaadaccabdaabdbcababcadcdbaba";
 const gucco3="cabaadbadbaccbdaadbbbcabddaca";
 const gucco4="adadabaaabbbcabbacdacadbadbdca";
