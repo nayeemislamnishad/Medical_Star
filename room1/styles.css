@@ -576,3 +576,17 @@ background-repeat: no-repeat;
   padding-top:10px;
   padding-bottom:10px;
 }
+
+
+@media print {
+    .option.selected {
+        background-color: #00ff00; /* Green color for selected options */
+    }
+    .option.correct {
+        background-color: #aaffaa; /* Light green for correct answers */
+    }
+    .option.incorrect {
+        background-color: #ffaaaa; /* Light red for incorrect answers */
+    }
+    /* Add any other necessary print-specific styles */
+}
