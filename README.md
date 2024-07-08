@@ -1,2 +1,2 @@
 # Medical_Star
-https://crakknayeem.github.io/Medical_Star/
+https://nayeemislamnishad.github.io/Medical_Star/room1/omr.html
