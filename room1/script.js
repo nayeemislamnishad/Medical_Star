@@ -74,11 +74,6 @@ function generateAnswerSheet() {
     totalCount = parseInt(questionNumber);
 }
 
-
-
-
-
-
 function selectOption(option, letter, questionNumber) {
     if (answersSubmitted) return; // Prevent selection after answers have been submitted
 
@@ -93,34 +88,28 @@ function selectOption(option, letter, questionNumber) {
 }
 
 
-
-
-
-
-
-
 let tTaArray = [0];
 
-
-
+// Function to submit answers
 function submitAnswers() {
     const idToHide = document.getElementById('submittext');
-    idToHide.style.display = 'none';
+
     // Confirmation before submitting answers
     if (!confirm("Are you sure you want to submit your answers? You won't be able to change them later.")) {
         return;
     }
+
     if (answersSubmitted) return; // Prevent submitting answers multiple times
     answersSubmitted = true; // Set flag to true after answers have been submitted
     clearInterval(countdownTimer); // Stop the countdown timer
-    // Confirmation before leaving the page
-    window.onbeforeunload = function() {
-        return "Are you sure you want to leave the page? Your answers and history will be lost.";
-    };
+
+    // Hide submit button after confirmation
+    idToHide.style.display = 'none';
+
     const selectedOptions = document.querySelectorAll('.option.selected');
     const correctAnswers = gucco1.split('');
     let totalMarks = 0;
-    let answeredQuestions = []; // Array to store question numbers that have been answered
+    let answeredQuestions = [];
 
     selectedOptions.forEach(option => {
         const selectedLetter = option.textContent.trim();
@@ -128,14 +117,14 @@ function submitAnswers() {
         const questionNumber = parseInt(option.dataset.questionNumber);
         if (selectedLetter === correctLetter) {
             option.classList.add('correct');
-            totalMarks += 1; // Increment totalMarks for each correct answer
+            totalMarks += 1;
         } else {
             option.classList.add('incorrect');
-            totalMarks -= 0.25; // Deduct 0.25 marks for each incorrect answer
+            totalMarks -= 0.25;
         }
 
         option.classList.remove('selected');
-        answeredQuestions.push(questionNumber); // Store answered question numbers
+        answeredQuestions.push(questionNumber);
     });
 
     // Check for unanswered questions and mark them as "skip"
@@ -146,16 +135,15 @@ function submitAnswers() {
         }
     }
 
-    console.log(totalMarks);
     const lastElementDisplay = document.createElement('div');
     lastElementDisplay.textContent = "Marks: " + totalMarks.toFixed(2) + "/" + totalCount;
     lastElementDisplay.classList.add('last-element-display');
 
     // Get feedback message based on marks
-    const original_marks =( totalMarks*100)/questionNumber;
-    const actual_marks=original_marks.toFixed(2);
+    const original_marks = (totalMarks * 100) / totalCount;
+    const actual_marks = original_marks.toFixed(2);
     console.log(original_marks);
-    
+
     const feedbackMessage = getFeedbackMessage(actual_marks);
 
     // Create and append the feedback message element
@@ -173,21 +161,31 @@ function submitAnswers() {
         const questionDiv = document.getElementById(`question${i}`);
         questionDiv.innerHTML += `<div class="correct-answer">Correct Answer: ${correctLetter}</div>`;
     }
+
+    // Set onbeforeunload handler initially
+    window.onbeforeunload = function () {
+        if (!answersSubmitted) {
+            return "Are you sure you want to leave? Your answers will be lost.";
+        }
+        else{
+            return "Are you sure you want to leave? Your answers will be lost.";
+        }
+    };
+
+
+    
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Set the onbeforeunload handler to prompt user before leaving or refreshing
+    window.onbeforeunload = function () {
+        if (!answersSubmitted) {
+            return "Are you sure you want to leave? Your answers will be lost.";
+        }
+    };
 
-
-
-
-
-
-
-
-
-
-
-
-
+    // Other existing code within the DOMContentLoaded event listener...
+});
 
 
 function hideAll() {
@@ -200,13 +198,6 @@ function hideAll() {
         }
     });
 }
-
-
-
-
-
-
-
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -319,14 +310,6 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.display = 'none';
         }, 300);
     }
-
-
-    // Confirmation before leaving the page
-    window.onbeforeunload = function() {
-        if (!answersSubmitted) {
-            return "Are you sure you want to leave the page? Your answers and history will be lost.";
-        }
-    };
 });
 
 
@@ -346,5 +329,3 @@ function getFeedbackMessage(marks){
 }
 
 
-
-    
