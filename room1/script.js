@@ -24,20 +24,31 @@ function startTimer(duration, display) {
 document.getElementById('submittext').style.display = 'none';
 document.getElementById('answerSheet').style.display = 'none';
 document.getElementById('chatBubble').style.display = 'none';
+document.getElementById('timer').style.display = 'none';
 
 const questionNumber = gucco1.length;
 const timeInseconds = questionNumber * 20;
-const timerDuration = timeInseconds / 60;
+const timeInMinutes= timeInseconds / 60;
+const timerDuration = Math.ceil(timeInMinutes);
 
 // const resultDiv = document.querySelector('.container');
 const resultDiv = document.getElementById('noteIt');
-const message = `Number of questions: ${questionNumber} <br> You will get 👉 ${timerDuration} minutes to give this exam`;
+const message = `Number of questions: <span class="highlight"> ${questionNumber} </span> <br> You will get 👉<span class="highlight"> ${timerDuration} minutes </span> to give this exam`;
 resultDiv.innerHTML = message;
 
 function generateAnswerSheet() {
+    
+  
+
     const questionNumber = gucco1.length;
     const timeInseconds = questionNumber * 20;
-    const timerDuration = timeInseconds / 60;
+    const timeInMinutes= timeInseconds / 60;
+    const timerDuration = Math.ceil(timeInMinutes);
+    // Confirmation before generating answer sheet
+    if (!answersSubmitted && !confirm("Are you ready for the exam? Ok, Lets start....")) {
+        return;
+    }
+
 
     let answerSheetHTML = '<h2>OMR Answer Sheet</h2>';
     for (let i = 1; i <= questionNumber; i++) {
@@ -54,6 +65,7 @@ function generateAnswerSheet() {
     document.getElementById('submittext').style.display = 'block';
     document.getElementById('answerSheet').style.display = 'block';
     document.getElementById('chatBubble').style.display = 'block';
+    document.getElementById('timer').style.display = 'block';
 
     // Start the timer when generating the answer sheet
     const timerDisplay = document.getElementById('timer');
@@ -61,6 +73,11 @@ function generateAnswerSheet() {
 
     totalCount = parseInt(questionNumber);
 }
+
+
+
+
+
 
 function selectOption(option, letter, questionNumber) {
     if (answersSubmitted) return; // Prevent selection after answers have been submitted
@@ -75,6 +92,13 @@ function selectOption(option, letter, questionNumber) {
     console.log(`Selected option ${letter} for Question ${questionNumber}`);
 }
 
+
+
+
+
+
+
+
 let tTaArray = [0];
 
 
@@ -82,9 +106,17 @@ let tTaArray = [0];
 function submitAnswers() {
     const idToHide = document.getElementById('submittext');
     idToHide.style.display = 'none';
+    // Confirmation before submitting answers
+    if (!confirm("Are you sure you want to submit your answers? You won't be able to change them later.")) {
+        return;
+    }
     if (answersSubmitted) return; // Prevent submitting answers multiple times
     answersSubmitted = true; // Set flag to true after answers have been submitted
     clearInterval(countdownTimer); // Stop the countdown timer
+    // Confirmation before leaving the page
+    window.onbeforeunload = function() {
+        return "Are you sure you want to leave the page? Your answers and history will be lost.";
+    };
     const selectedOptions = document.querySelectorAll('.option.selected');
     const correctAnswers = gucco1.split('');
     let totalMarks = 0;
@@ -287,21 +319,29 @@ document.addEventListener('DOMContentLoaded', () => {
             overlay.style.display = 'none';
         }, 300);
     }
+
+
+    // Confirmation before leaving the page
+    window.onbeforeunload = function() {
+        if (!answersSubmitted) {
+            return "Are you sure you want to leave the page? Your answers and history will be lost.";
+        }
+    };
 });
 
 
 
 function getFeedbackMessage(marks){
     if (marks >= 85 && marks <= 100) {
-        return `DMC is for you. You obtained: ${marks}/100`;
+        return `You will top in any national level exam InsaAllah. You Obtained: ${marks}/100`;
     } else if (marks >= 88 && marks <= 89) {
-        return `SRMC is for you. You obtained: ${marks}/100`;
+        return `You will rank good position in any national level exam InsaAllah. You Obtained: ${marks}/100`;
     } else if (marks >= 75 && marks < 85) {
-        return `Keep going, you're doing well! You obtained: ${marks}/100`;
+        return `Keep going, you're doing well.At least you will get a good subject in university exams InsaAllah! You obtained: ${marks}/100`;
     } else if (marks >= 50 && marks < 75) {
-        return `You can do better, keep practicing! You obtained: ${marks}/100`;
+        return `You can do better, keep practicing.Have to do better ! You obtained: ${marks}/100`;
     } else {
-        return `Don't give up, keep working hard!  You obtained: ${marks}/100`;
+        return `Don't give up, keep working hard! Your Position is not good.   You obtained: ${marks}/100`;
     }
 }
 
